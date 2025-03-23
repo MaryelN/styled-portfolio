@@ -17,7 +17,7 @@ const navItems = [
 
 const Navbar = () => {
   return (
-    <heather>
+    <header>
       <div className={styles.container}>
         <nav className={styles.navbar}>
           {navItems.map((item) => (
@@ -42,7 +42,11 @@ const Navbar = () => {
         </div>
         <div className={styles.menu_list}>
           <div>
-            <img src={pauseIcon} alt="pause icon" />
+            <img
+              src={pauseIcon}
+              alt="pause icon"
+              className={styles.menu_pause}
+            />
           </div>
           <div>
             {navItems.map((item) => (
@@ -56,7 +60,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </heather>
+    </header>
   );
 };
 

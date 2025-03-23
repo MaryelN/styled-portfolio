@@ -1,0 +1,21 @@
+.container {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.active {
+  background-image: url("../../assets/images/nav/active-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.icon {
+  height: 1rem;
+}
+
+@media (max-width: 768px) {
+  .icon {
+    height: 1rem;
+    width: auto;
+  }
+}

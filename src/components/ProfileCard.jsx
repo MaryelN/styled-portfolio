@@ -81,7 +81,7 @@ const LastName = styled.h2`
   }
 `;
 
-const H3 = styled.h3`
+const P = styled.p`
   color: white;
   font-size: 4vw;
   font-family: "Press Start 2P", system-ui;
@@ -108,7 +108,7 @@ function ProfileCard() {
         <FirstName>Cédric</FirstName>
         <LastName> Phung</LastName>
         <ProfileImage src={profilePhoto} alt="profile" />
-        <H3>Developpeur web</H3>
+        <P>Developpeur web</P>
       </ContentContainer>
     </StyledProfileCard>
   );

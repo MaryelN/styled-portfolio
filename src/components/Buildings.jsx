@@ -2,9 +2,14 @@ import styled from "styled-components";
 import buildings from "../assets/images/index/buildings-gif.gif";
 
 const StyledBuildings = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
+
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 const Image = styled.img`

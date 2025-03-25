@@ -11,13 +11,24 @@ function Hero() {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr auto;
     height: 100vh;
+    overflow: hidden;
+
+    @media (max-width: 960px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column-reverse;
+    }
   `;
 
   const Container = styled.div`
-    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @media (min-width: 960px) {
+      height: 75vh;
+    }
   `;
 
   return (

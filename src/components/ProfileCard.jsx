@@ -36,45 +36,67 @@ const ProfileImage = styled.img`
 `;
 
 const BuildingImage = styled.img`
-  width: 55vh;
+  width: 50vh;
   height: auto;
   position: relative;
   z-index: 1;
+
+  @media (min-width: 960px) {
+    width: 55vh;
+  }
 `;
 
 const FirstName = styled.h2`
   color: #fecc00;
-  font-size: 1.2vw;
+  font-size: 4vw;
   font-family: "Press Start 2P", system-ui;
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
-  top: 72%;
-  left: 33%;
+  top: 74%;
+  left: 38%;
   z-index: 4;
+
+  @media (min-width: 960px) {
+    font-size: 1.2vw;
+    top: 72%;
+    left: 33%;
+  }
 `;
 const LastName = styled.h2`
   color: #fecc00;
-  font-size: 1.8vw;
+  font-size: 6vw;
   font-family: "Press Start 2P", system-ui;
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
-  top: 75%;
-  left: 30%;
+  top: 77%;
+  left: 36%;
   z-index: 4;
+
+  @media (min-width: 768px) {
+    font-size: 1.8vw;
+    top: 75%;
+    left: 30%;
+  }
 `;
 
 const H3 = styled.h3`
   color: white;
-  font-size: 1vw;
+  font-size: 4vw;
   font-family: "Press Start 2P", system-ui;
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
   bottom: 5%;
-  left: 18%;
+  left: 22%;
   z-index: 4;
+
+  @media (min-width: 768px) {
+    font-size: 1vw;
+    bottom: 5%;
+    left: 18%;
+  }
 `;
 
 function ProfileCard() {

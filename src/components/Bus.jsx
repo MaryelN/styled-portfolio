@@ -8,6 +8,11 @@ const BusImage = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-100%, -300%);
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 `;
 
 function Bus() {

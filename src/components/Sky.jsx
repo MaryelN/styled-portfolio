@@ -11,13 +11,19 @@ const MoonImage = styled.img`
   z-index: -100;
 `;
 
-const CloudImage = styled.img`
-  width: 5rem;
+const StyledSky = styled.div`
+  display: none;
+  overflow-x: hidden;
+  width: 100vw;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 `;
 
 function Sky() {
   return (
-    <>
+    <StyledSky>
       <motion.div
         animate={{
           x: ["0%", "100%"],
@@ -44,7 +50,7 @@ function Sky() {
         <img src={cloud2} alt="Cloud" />
       </motion.div>
       <MoonImage src={moon} alt="moon" />
-    </>
+    </StyledSky>
   );
 }
 

@@ -4,6 +4,7 @@ import Bg from "../assets/images/formation/background.png";
 const FormationContainer = styled.section`
   display: flex;
   justify-content: center;
+  min-height: 75vh;
 `;
 
 const ContainerBg = styled.section`
@@ -41,7 +42,7 @@ const Title = styled.h1`
 function Formation() {
   return (
     <>
-      <FormationContainer>
+      <FormationContainer id="formation">
         <ContainerBg>
           <Title>Formation</Title>
         </ContainerBg>

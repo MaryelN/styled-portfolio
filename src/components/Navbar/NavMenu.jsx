@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import NavIcon from "./NavIcon";
 import menuIcon from "../../assets/images/nav/menu-icon.png";
@@ -25,6 +26,17 @@ const BtnMenu = styled.img`
   @media (max-width: 768px) {
     display: block;
   }
+`;
+
+const BlurOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px); /* Blur effect */
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+  z-index: 998; /* Below the menu but above the content */
 `;
 
 const MenuList = styled.div`
@@ -83,7 +95,7 @@ function Navmenu({ navIcons }) {
     setTimeout(() => {
       setMenuVisible(false);
       setSelectedItem(null);
-    }, 800); // Hides menu after 2 seconds
+    }, 700); // Hides menu after 700 ms
   };
 
   return (
@@ -96,20 +108,32 @@ function Navmenu({ navIcons }) {
             onClick={toggleMenu}
           />
         </a>
-        <MenuList isVisible={menuVisible}>
-          <TitlePause src={pauseIcon} alt="pause title" />
+        <AnimatePresence>
+          {menuVisible && (
+            <>
+              <BlurOverlay
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={toggleMenu}
+              />
+              <MenuList isVisible={menuVisible}>
+                <TitlePause src={pauseIcon} alt="pause title" />
 
-          {navIcons.map((icon) => (
-            <MenuItem
-              key={icon.label}
-              selected={selectedItem === icon.label}
-              onClick={() => handleMenuClick(icon.label, icon.target)}
-            >
-              <NavTitle>{icon.label}</NavTitle>
-              <NavIcon icon={icon.icon} label={icon.label} />
-            </MenuItem>
-          ))}
-        </MenuList>
+                {navIcons.map((icon) => (
+                  <MenuItem
+                    key={icon.label}
+                    selected={selectedItem === icon.label}
+                    onClick={() => handleMenuClick(icon.label, icon.target)}
+                  >
+                    <NavTitle>{icon.label}</NavTitle>
+                    <NavIcon icon={icon.icon} label={icon.label} />
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </>
+          )}
+        </AnimatePresence>
       </Menu>
     </div>
   );

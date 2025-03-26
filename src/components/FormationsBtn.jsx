@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import TextBg from "../assets/images/formation/Text-bg.png";
 
@@ -42,6 +42,7 @@ const TextContainer = styled.div`
   background-size: cover;
   background-position: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -49,9 +50,21 @@ const TextContainer = styled.div`
 
 function FormationsBtn({ data }) {
   const [textToShow, setTextToShow] = useState("");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const handleClick = (buttonLabel) => {
-    setTextToShow(data[buttonLabel]?.text || "");
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize); // Cleanup
+  }, []);
+
+  const handleClick = (dataLabel) => {
+    const buttonData = data[dataLabel] || {};
+    setTextToShow({
+      text: buttonData.text || "",
+      title: buttonData.title || "",
+    });
   };
 
   return (
@@ -60,12 +73,21 @@ function FormationsBtn({ data }) {
         <Button
           key={key}
           onClick={() => handleClick(key)}
-          position1={data[key].position1}
+          position1={
+            screenWidth < 768
+              ? data[key].position2 // Show position2 if screen < 768px
+              : data[key].position1
+          }
         >
           {data[key].date}
         </Button>
       ))}
-      {textToShow && <TextContainer>{textToShow}</TextContainer>}
+      {textToShow && (
+        <TextContainer>
+          <h3>{textToShow.title}</h3>
+          <p>{textToShow.text}</p>
+        </TextContainer>
+      )}
     </ButtonContainer>
   );
 }

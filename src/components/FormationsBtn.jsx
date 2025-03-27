@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import TextBg from "../assets/images/formation/Text-bg.png";
+import Boy from "../assets/images/formation/boy.png";
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -25,10 +26,10 @@ const Button = styled.button`
   }
 
   // Dynamically applying the position properties
-  top: ${({ position1 }) => position1?.top || "auto"};
-  left: ${({ position1 }) => position1?.left || "auto"};
-  right: ${({ position1 }) => position1?.right || "auto"};
-  bottom: ${({ position1 }) => position1?.bottom || "auto"};
+  top: ${({ position }) => position?.top || "auto"};
+  left: ${({ position }) => position?.left || "auto"};
+  right: ${({ position }) => position?.right || "auto"};
+  bottom: ${({ position }) => position?.bottom || "auto"};
 `;
 
 const TextContainer = styled.div`
@@ -46,25 +47,46 @@ const TextContainer = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    top: -180px;
+  }
+`;
+
+const Character = styled.img`
+  position: absolute;
+  width: 3.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 5rem;
+  pointer-events: none; /* Prevents the GIF from interfering with clicks */
+  top: ${({ position }) => position?.top || "auto"};
+  left: ${({ position }) => position?.left || "auto"};
+  right: ${({ position }) => position?.right || "auto"};
+  bottom: ${({ position }) => position?.bottom || "auto"};
 `;
 
 function FormationsBtn({ data }) {
   const [textToShow, setTextToShow] = useState("");
+  const [selectedButton, setSelectedButton] = useState(null);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize); // Cleanup
   }, []);
 
   const handleClick = (dataLabel) => {
-    const buttonData = data[dataLabel] || {};
-    setTextToShow({
-      text: buttonData.text || "",
-      title: buttonData.title || "",
-    });
+    if (selectedButton === dataLabel) {
+      setTextToShow("");
+      setSelectedButton(null);
+    } else {
+      const buttonData = data[dataLabel] || {};
+      setTextToShow({
+        text: buttonData.text || "",
+        title: buttonData.title || "",
+      });
+      setSelectedButton(dataLabel);
+    }
   };
 
   return (
@@ -73,7 +95,7 @@ function FormationsBtn({ data }) {
         <Button
           key={key}
           onClick={() => handleClick(key)}
-          position1={
+          position={
             screenWidth < 768
               ? data[key].position2 // Show position2 if screen < 768px
               : data[key].position1
@@ -82,6 +104,16 @@ function FormationsBtn({ data }) {
           {data[key].date}
         </Button>
       ))}
+      {selectedButton && (
+        <Character
+          src={Boy}
+          position={
+            screenWidth < 768
+              ? data[selectedButton].position2
+              : data[selectedButton].position1
+          }
+        />
+      )}
       {textToShow && (
         <TextContainer>
           <h3>{textToShow.title}</h3>

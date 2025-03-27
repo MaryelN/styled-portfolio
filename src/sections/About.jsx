@@ -3,7 +3,7 @@ import TextAbout from "../components/TextAbout";
 
 function About() {
   return (
-    <div>
+    <div id="about">
       <TextAbout />
       <Techno />
     </div>

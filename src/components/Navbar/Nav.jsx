@@ -85,7 +85,7 @@ const Nav = ({ navIcons }) => {
           </NavItemWrapper>
         ))}
       </NavItems>
-      <UpButton />
+      <UpButton onClick={() => scrollToSection("hero")} />
     </NavContainer>
   );
 };

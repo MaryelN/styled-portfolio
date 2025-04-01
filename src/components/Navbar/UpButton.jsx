@@ -17,14 +17,10 @@ const UpBtn = styled.img`
   }
 `;
 
-function UpButton() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
+function UpButton({ onClick }) {
   return (
     <>
-      <UpBtn src={Img} alt="up button icon" onClick={() => scrollToTop} />
+      <UpBtn src={Img} alt="up button icon" onClick={onClick} />
     </>
   );
 }

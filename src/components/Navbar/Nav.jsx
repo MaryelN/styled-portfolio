@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NavIcon from "./NavIcon";
 import NavBg from "../../assets/images/nav/nav-bg.png";
 import ActiveBg from "../../assets/images/nav/active-bg.png";
+import UpButton from "./UpButton";
 
 const NavContainer = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const NavContainer = styled.div`
   z-index: 999;
   left: 0;
   right: 0;
-  margin: 0 auto;
+  margin: 1rem auto;
   width: 100%;
   height: auto;
   @media (max-width: 768px) {
@@ -49,7 +50,7 @@ const Nav = ({ navIcons }) => {
 
   const handleScroll = () => {
     const sections = document.querySelectorAll("section");
-    let currentSection = "about";
+    let currentSection = "hero";
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
@@ -84,6 +85,7 @@ const Nav = ({ navIcons }) => {
           </NavItemWrapper>
         ))}
       </NavItems>
+      <UpButton />
     </NavContainer>
   );
 };

@@ -52,11 +52,15 @@ const StartImage = styled.img`
 `;
 
 function HeroText() {
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <StyledHeroText>
       <HelloGif src={helloGif} />
       <P>Welcome to my porfolio</P>
-      <StartImage src={startButton} />
+      <StartImage src={startButton} onClick={() => scrollToSection("about")} />
     </StyledHeroText>
   );
 }

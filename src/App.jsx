@@ -3,6 +3,7 @@ import Hero from "./sections/Hero";
 import Formation from "./sections/Formation";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Contact from "./sections/Contact";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Hero />
       <About />
       <Formation />
+      <Contact />
     </BrowserRouter>
   );
 }

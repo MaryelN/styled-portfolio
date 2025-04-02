@@ -34,7 +34,7 @@ function Hero() {
   return (
     <>
       <Sky />
-      <Container>
+      <Container id="hero">
         <StyledHero>
           <ProfileCard />
           <HeroText />

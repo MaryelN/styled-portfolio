@@ -7,6 +7,7 @@ function TextAbout() {
     margin-top: 4rem;
     margin-left: 20px;
     margin-right: 20px;
+    
   `;
 
   const StyledTextAbout = styled.div`
